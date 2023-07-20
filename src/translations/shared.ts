@@ -1,4 +1,6 @@
 export const shared = {
-    'en': 'English',
-    'pl': 'Polski'
+    lngSwitchButton: {
+        'en': 'English',
+        'pl': 'Polski'
+    }
 }

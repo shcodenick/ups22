@@ -17,7 +17,7 @@ const LangSwitcher = () => {
     <Switcher>
       {Object.keys(translations).map((lng, i) => (
         <Button sx={{fontWeight: 'bold'}} variant="contained" key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>
-          {t(lng)}
+          {t(`lngSwitchButton.${lng}`)}
         </Button>
       ))}
     </Switcher>
