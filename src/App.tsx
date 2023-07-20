@@ -21,14 +21,9 @@ function App() {
             <Button variant="contained" key={lng} onClick={() => i18n.changeLanguage(lng)} disabled={i18n.resolvedLanguage === lng}>{ lngs[lng as LangKey].nativeName }</Button>
           ))}
         </div>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <h1>
           {t('welcome')}
-        </a>
+        </h1>
       </header>
     </div>
   );
