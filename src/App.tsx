@@ -4,7 +4,7 @@ import LangSwitcher from './components/LangSwitcher'
 
 
 function App() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   return (
     <div className="App">
       <header className="App-header">
