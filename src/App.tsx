@@ -1,7 +1,7 @@
 import './App.css';
 import { useTranslation } from 'react-i18next';
 import LangSwitcher from './components/LangSwitcher'
-
+import Pig from './components/Pig';
 
 function App() {
   const { t } = useTranslation()
@@ -9,7 +9,8 @@ function App() {
     <div className="App">
       <header className="App-header">
         <LangSwitcher />
-        <h1>{t('welcome')}</h1>
+        <Pig />
+        <h4>{t('welcome')}</h4>
       </header>
     </div>
   );

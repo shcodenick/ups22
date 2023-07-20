@@ -2,7 +2,8 @@ import { shared } from './shared'
 
 export const en = {
     translation: {
-        welcome: 'Welcome to INVO app! #upskill022',
+        oink: "OINK!",
+        welcome: 'Welcome to INVO app!',
         ...shared
     }
 }
