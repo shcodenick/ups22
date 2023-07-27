@@ -2,9 +2,8 @@ import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
 
 const PigBox = styled.div`
-    position: fixed;
-    right: 10px;
-    top: 10px;
+    float: right;
+    margin: 10px;
     cursor: pointer;
   span { font-size: 60px; }
 `;

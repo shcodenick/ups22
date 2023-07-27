@@ -1,8 +1,9 @@
-.App {
-  text-align: center;
-}
+body { font-family:'Roboto', sans-serif; background-color: #eee; }
 
-body { font-family:'Roboto', sans-serif}
+/* blue: 3958b8 */
+
+a { color: #fff; text-decoration: none;}
+h4 { text-align: center; background-color: #fff; border-radius: 5px; width: 200px; margin: 20px auto; padding: 4px; }
 
 .App-header {
   background-color: #ffffff;
@@ -18,3 +19,6 @@ body { font-family:'Roboto', sans-serif}
 .App-link {
   color: #294dec;
 }
+
+#formActions { float: right; }
+#formActions button { margin-left: 10px; }

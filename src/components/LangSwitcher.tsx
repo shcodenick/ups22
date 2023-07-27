@@ -1,3 +1,4 @@
+import React from 'react'
 import Button from '@mui/material/Button';
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
@@ -5,9 +6,8 @@ import { translations } from '../translations/index'
 
 
 const Switcher = styled.div`
-  position: fixed; 
-  left: 10px; 
-  top: 10px;
+float: right;
+margin: 20px;
 `
 
 const LangSwitcher = () => {
