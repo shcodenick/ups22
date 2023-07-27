@@ -30,6 +30,7 @@ export const en = {
         cancel: 'Cancel',
         save: 'Save',
         items: 'Items',
+        add_item: 'Add item',
         ...shared
     }
 }

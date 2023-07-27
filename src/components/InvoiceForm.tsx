@@ -76,6 +76,10 @@ const InvoiceForm = () => {
                 <h2>{t('items')}</h2>
                 <InvoiceItem />
                 <InvoiceItem />
+                <br></br>
+                <Button variant="contained" color="primary">
+                    {t('add_item')}
+                </Button>
             </form>
         </InvoicesFormBox>
     );

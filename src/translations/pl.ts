@@ -30,6 +30,7 @@ export const pl = {
         cancel: 'Anuluj',
         save: 'Zapisz',
         items: 'Pozycje',
+        add_item: 'Dodaj pozycję',
         ...shared
     }
 }
