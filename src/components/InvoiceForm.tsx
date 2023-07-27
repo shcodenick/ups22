@@ -55,7 +55,7 @@ const InvoiceForm = () => {
                         label={t('no')}
                         variant="standard"
                         value=""
-                        ref={noInputRef} 
+                        inputRef={noInputRef} 
                         />
                         <span onClick={handleButtonClick}>Focus Input</span>
                     </Grid>
