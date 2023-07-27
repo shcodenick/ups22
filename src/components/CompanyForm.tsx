@@ -16,6 +16,7 @@ const CompanyForm = () => {
         <CompanyFormBox>
             {fields.map((item, index) => (
                 <TextField
+                key={index}
                 fullWidth
                 label={t(item)}
                 variant="standard"

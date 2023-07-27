@@ -24,13 +24,6 @@ const InvoiceForm = () => {
           }
       }, []);
 
-      const handleButtonClick = () => {
-        if (noInputRef.current) {
-            console.log('fokus')
-            noInputRef.current.focus();
-        }
-      };
-
     const handleSubmit = (event: any) => {
         event.preventDefault();
         console.log('submit');
@@ -48,7 +41,7 @@ const InvoiceForm = () => {
                     </Button>
                 </div>
                 <h2>{t('newinvoice')}</h2>
-                <Grid container spacing={1} xs={6}>
+                <Grid item container spacing={1} xs={6}>
                     <Grid item xs={8}>
                         <TextField
                         fullWidth
@@ -57,7 +50,6 @@ const InvoiceForm = () => {
                         value=""
                         inputRef={noInputRef} 
                         />
-                        <span onClick={handleButtonClick}>Focus Input</span>
                     </Grid>
                     <Grid item xs={6}>
                         <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -65,7 +57,7 @@ const InvoiceForm = () => {
                         </LocalizationProvider>
                     </Grid>
                     <Grid item xs={6}>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
                             <DatePicker label={t('valid')} />
                         </LocalizationProvider>
                     </Grid>

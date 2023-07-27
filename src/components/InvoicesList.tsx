@@ -45,7 +45,7 @@ const InvoicesList = () => {
                 </TableHead>
                 <TableBody>
                 {invoicesList.map((item, index) => (
-                    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                    <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell>{item[0] }</TableCell>
                         <TableCell>{item[1] }</TableCell>
                         <TableCell>{item[2] }</TableCell>
