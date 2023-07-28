@@ -6,8 +6,8 @@ import { translations } from '../translations/index'
 
 
 const Switcher = styled.div`
-float: right;
-margin: 20px;
+  display: flex;
+  column-gap: 10px;
 `
 
 const LangSwitcher = () => {
