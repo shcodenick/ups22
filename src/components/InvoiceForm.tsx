@@ -6,6 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
+import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
 import InvoiceItem from './InvoiceItem';
 
@@ -32,14 +33,7 @@ const InvoiceForm = () => {
     return (
         <InvoicesFormBox>
             <form onSubmit={handleSubmit}>
-                <div id="formActions">
-                    <Button variant="contained" color="primary">
-                        {t('cancel')}
-                    </Button>
-                    <Button type="submit" variant="contained" color="primary">
-                        {t('save')}
-                    </Button>
-                </div>
+                <FormActions />
                 <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
                     <Grid item xs={8}>
