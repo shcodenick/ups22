@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import Button from '@mui/material/Button';
-import styled from '@emotion/styled'
+import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
-import { translations } from '../translations/index'
+import { translations } from '../translations/index';
 
 
 const Switcher = styled.div`
