@@ -31,6 +31,10 @@ export const pl = {
         save: 'Zapisz',
         items: 'Pozycje',
         add_item: 'Dodaj pozycję',
+        required: 'To pole jest wymagane.',
+        toolong: 'Za długie.',
+        tooshort: 'Za krótkie.',
+        tooearly: 'Za wcześnie.',
         ...shared
     }
 }

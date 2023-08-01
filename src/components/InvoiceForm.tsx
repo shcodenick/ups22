@@ -5,10 +5,15 @@ import { TextField, Button, Grid } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Controller } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
 import InvoiceItem from './InvoiceItem';
+
 
 const InvoicesFormBox = styled.div`
     margin: 20px auto;
@@ -25,14 +30,29 @@ const InvoiceForm = () => {
           }
       }, []);
 
-    const handleSubmit = (event: any) => {
-        event.preventDefault();
-        console.log('submit');
-      };
+
+    const schema = yup.object().shape({
+        no: yup.string().min(1, t('tooshort')).max(2, t('toolong')).required(t('required')),
+        created: yup.date().required(t('required')),
+        valid: yup.date().required(t('required')).test({
+            name: 'greater',
+            message: t('tooearly'),
+            test(value, ctx) {
+                if (value < this.parent.created) {
+                    return false
+                }
+                return true
+            }
+        }),
+    });
+    const { control, register, handleSubmit, watch, formState: { errors } } = useForm({
+        resolver: yupResolver(schema)
+    });
+    const onSubmit = (data: any) => console.log(data);
 
     return (
         <InvoicesFormBox>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <FormActions />
                 <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
@@ -41,19 +61,50 @@ const InvoiceForm = () => {
                         fullWidth
                         label={t('no')}
                         variant="standard"
-                        value=""
                         inputRef={noInputRef} 
+                        {...register("no", { required: true })}
                         />
+                        <p>{errors.no?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label={t('created')} />
-                        </LocalizationProvider>
+                        <Controller
+                            control={control}
+                            name="created"
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                                fieldState: { invalid, isTouched, isDirty, error },
+                                formState,
+                            }) => (
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker
+                                    label={t('created')} 
+                                    onChange={onChange} // send value to hook form
+                                    inputRef={ref}
+                                />
+                                </LocalizationProvider>
+                            )}
+                        />
+                        <p>{errors.created?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DatePicker label={t('valid')} />
-                        </LocalizationProvider>
+                        <Controller
+                            control={control}
+                            name="valid"
+                            render={({
+                                field: { onChange, onBlur, value, name, ref },
+                                fieldState: { invalid, isTouched, isDirty, error },
+                                formState,
+                            }) => (
+                                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                                <DatePicker 
+                                    label={t('valid')}
+                                    onChange={onChange} // send value to hook form
+                                    inputRef={ref}
+                                />
+                                </LocalizationProvider>
+                            )}
+                        />
+                        <p>{errors.valid?.message}</p>
                     </Grid>
                 </Grid>
                 

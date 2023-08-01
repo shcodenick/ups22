@@ -31,6 +31,10 @@ export const en = {
         save: 'Save',
         items: 'Items',
         add_item: 'Add item',
+        required: 'This field is required.',
+        toolong: 'This is too long.',
+        tooshort: 'This is too short.',
+        tooearly: 'This is too early.',
         ...shared
     }
 }
