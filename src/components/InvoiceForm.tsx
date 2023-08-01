@@ -111,11 +111,11 @@ const InvoiceForm = () => {
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <h2>{t('recipient')}</h2>
-                        <CompanyForm />
+                        <CompanyForm prefix="recipient_" />
                     </Grid>
                     <Grid item xs={6}>
                         <h2>{t('sender')}</h2>
-                        <CompanyForm />
+                        <CompanyForm prefix="sender_" />
                     </Grid>
                 </Grid>
                 <h2>{t('items')}</h2>

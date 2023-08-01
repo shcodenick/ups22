@@ -7,7 +7,7 @@ const CompanyFormBox = styled.div`
 
 `;
 
-const CompanyForm = () => {
+const CompanyForm = (props:any) => {
     const { t } = useTranslation()
     const [inputValue, setInputValue] = useState('');
     const fields = ['company_name', 'city', 'street', 'postcode', 'vat', 'phone', 'email', 'bank_account']
@@ -21,6 +21,7 @@ const CompanyForm = () => {
                 label={t(item)}
                 variant="standard"
                 value={inputValue}
+                name={props.prefix + item}
                 />
             ))}
         </CompanyFormBox>
