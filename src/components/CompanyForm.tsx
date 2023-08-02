@@ -1,15 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
-import { TextField, Button } from '@mui/material';
+import { TextField } from '@mui/material';
+import { useFormContext } from "react-hook-form";
 
 const CompanyFormBox = styled.div`
-
+    background-color: #fff; padding: 5px;
 `;
 
 const CompanyForm = (props:any) => {
     const { t } = useTranslation()
-    const [inputValue, setInputValue] = useState('');
+    const { register } = useFormContext();
     const fields = ['company_name', 'city', 'street', 'postcode', 'vat', 'phone', 'email', 'bank_account']
 
     return (
@@ -21,13 +22,13 @@ const CompanyForm = (props:any) => {
                 fullWidth
                 label={t(item)}
                 variant="standard"
-                value={inputValue}
+                {...register(props.prefix + item)}
                 name={props.prefix + item}
                 />
             ))}
         </CompanyFormBox>
     );
 };
-  
+
 
 export default CompanyForm;

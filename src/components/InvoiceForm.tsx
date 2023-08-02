@@ -6,7 +6,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from 'react-hook-form';
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -32,10 +32,10 @@ const InvoiceForm = () => {
 
 
     const schema = yup.object().shape({
-        no: yup.string().min(1, t('tooshort')).max(2, t('toolong')).required(t('required')),
+        no: yup.string().required(t('required')).min(1, t('tooshort')).max(2, t('toolong')),
         created: yup.date().required(t('required')),
         valid: yup.date().required(t('required')).test({
-            name: 'greater',
+            name: 'valid_gt_created',
             message: t('tooearly'),
             test(value, ctx) {
                 if (value < this.parent.created) {
@@ -45,14 +45,15 @@ const InvoiceForm = () => {
             }
         }),
     });
-    const { control, register, handleSubmit, watch, formState: { errors } } = useForm({
+    const methods = useForm({
         resolver: yupResolver(schema)
-    });
+    }); 
     const onSubmit = (data: any) => console.log(data);
 
     return (
         <InvoicesFormBox>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <FormProvider {...methods}>
+            <form onSubmit={methods.handleSubmit(onSubmit)}>
                 <FormActions />
                 <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
@@ -62,13 +63,13 @@ const InvoiceForm = () => {
                         label={t('no')}
                         variant="standard"
                         inputRef={noInputRef} 
-                        {...register("no", { required: true })}
+                        {...methods.register("no", { required: true })}
                         />
-                        <p>{errors.no?.message}</p>
+                        <p>{methods.formState.errors.no?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <Controller
-                            control={control}
+                            control={methods.control}
                             name="created"
                             render={({
                                 field: { onChange, onBlur, value, name, ref },
@@ -84,11 +85,11 @@ const InvoiceForm = () => {
                                 </LocalizationProvider>
                             )}
                         />
-                        <p>{errors.created?.message}</p>
+                        <p>{methods.formState.errors.created?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <Controller
-                            control={control}
+                            control={methods.control}
                             name="valid"
                             render={({
                                 field: { onChange, onBlur, value, name, ref },
@@ -104,7 +105,7 @@ const InvoiceForm = () => {
                                 </LocalizationProvider>
                             )}
                         />
-                        <p>{errors.valid?.message}</p>
+                        <p>{methods.formState.errors.valid?.message}</p>
                     </Grid>
                 </Grid>
                 
@@ -124,6 +125,7 @@ const InvoiceForm = () => {
                     {t('add_item')}
                 </Button>
             </form>
+            </FormProvider>
         </InvoicesFormBox>
     );
 };
