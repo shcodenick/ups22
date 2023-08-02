@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid } from '@mui/material';
@@ -48,6 +48,12 @@ const InvoiceForm = () => {
     const methods = useForm({
         resolver: yupResolver(schema)
     }); 
+
+    const [itemsList, setItemsList] = useState<React.ReactNode[]>([]);
+    const handleAddItemClick = () => {
+        setItemsList([...itemsList, <InvoiceItem key={itemsList.length} />]);
+      };
+
     const onSubmit = (data: any) => console.log(data);
 
     return (
@@ -117,11 +123,14 @@ const InvoiceForm = () => {
                         <CompanyForm title={t('sender')} prefix="sender_" />
                     </Grid>
                 </Grid>
+
                 <h2>{t('items')}</h2>
                 <InvoiceItem />
-                <InvoiceItem />
-                <br></br>
-                <Button variant="contained" color="primary">
+                {itemsList.map((component, index) => (
+                    <div key={index}>{component}</div>
+                ))}
+
+                <Button onClick={handleAddItemClick} variant="contained" color="primary" sx={{marginTop: '20px'}}>
                     {t('add_item')}
                 </Button>
             </form>
