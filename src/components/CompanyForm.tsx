@@ -14,6 +14,7 @@ const CompanyForm = (props:any) => {
 
     return (
         <CompanyFormBox>
+            <h2>{props.title}</h2>
             {fields.map((item, index) => (
                 <TextField
                 key={index}
