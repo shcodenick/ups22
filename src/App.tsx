@@ -11,8 +11,7 @@ function App() {
   return (
     <div className="App">
       <TopBar />
-      <div>  
-        <h4>{t('welcome')}</h4>
+      <div>
         <Content />
       </div>
     </div>

@@ -5,7 +5,8 @@ import {
   } from "react-router-dom";
 import InvoicesList from './InvoicesList';
 import InvoiceForm from './InvoiceForm';
-  
+import PageNotFound
+ from './PageNotFound';
   
 const Content = () => {
 
@@ -13,6 +14,7 @@ const Content = () => {
       <Routes>
         <Route path="/" element={<InvoicesList />} />
         <Route path="/invoice" element={<InvoiceForm />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
   )
 }

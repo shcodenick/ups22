@@ -2,6 +2,7 @@ import { shared } from './shared'
 
 export const en = {
     translation: {
+        back: "Back",
         oink: "OINK!",
         welcome: 'Welcome to INVO app!',
         invoices: 'Invoices',

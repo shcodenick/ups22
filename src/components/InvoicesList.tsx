@@ -30,6 +30,7 @@ const InvoicesList = () => {
 
     return (
         <InvocesListBox>
+            <h4>{t('welcome')}</h4>
             <h2>{t('invoices')}</h2>
 
             <TableContainer component={Paper}>
