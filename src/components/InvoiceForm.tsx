@@ -12,7 +12,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
-import InvoiceItem from './InvoiceItem';
+import InvoiceItems from './InvoiceItems';
 
 
 const InvoicesFormBox = styled.div`
@@ -49,10 +49,7 @@ const InvoiceForm = () => {
         resolver: yupResolver(schema)
     }); 
 
-    const [itemsList, setItemsList] = useState<React.ReactNode[]>([]);
-    const handleAddItemClick = () => {
-        setItemsList([...itemsList, <InvoiceItem key={itemsList.length} />]);
-      };
+    const ItemsValues = [{}];
 
     const onSubmit = (data: any) => console.log(data);
 
@@ -60,7 +57,6 @@ const InvoiceForm = () => {
         <InvoicesFormBox>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <FormActions />
                 <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
                     <Grid item xs={8}>
@@ -124,15 +120,9 @@ const InvoiceForm = () => {
                     </Grid>
                 </Grid>
 
-                <h2>{t('items')}</h2>
-                <InvoiceItem />
-                {itemsList.map((component, index) => (
-                    <div key={index}>{component}</div>
-                ))}
-
-                <Button onClick={handleAddItemClick} variant="contained" color="primary" sx={{marginTop: '20px'}}>
-                    {t('add_item')}
-                </Button>
+                <InvoiceItems />
+                
+                <FormActions />
             </form>
             </FormProvider>
         </InvoicesFormBox>
