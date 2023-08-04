@@ -10,11 +10,17 @@ import PageNotFound
   
 const Content = () => {
 
+  const routing_map = {
+    '/': InvoicesList,
+    '/invoice': InvoiceForm,
+    '*': PageNotFound,
+  };
+
   return (
       <Routes>
-        <Route path="/" element={<InvoicesList />} />
-        <Route path="/invoice" element={<InvoiceForm />} />
-        <Route path="*" element={<PageNotFound />} />
+        {Object.entries(routing_map).map(([path, Component]) => (
+          <Route key={path} path={path} element={<Component/>} />
+        ))}
       </Routes>
   )
 }

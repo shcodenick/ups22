@@ -14,7 +14,7 @@ const PageNotFound = () => {
     const navigate = useNavigate();
     const handleBackClick = () => {
         navigate('/');
-      };
+    };
 
     return (
         <PageNotFoundBox>
