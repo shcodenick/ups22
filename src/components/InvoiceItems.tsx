@@ -13,7 +13,7 @@ const InvoiceItemsBox = styled.div`
 
 const InvoiceItems = () => {
     const { t } = useTranslation();
-    const { register } = useFormContext();
+    const { register, formState } = useFormContext();
 
     interface Item {
         name: string;
@@ -55,9 +55,10 @@ const InvoiceItems = () => {
                         fullWidth
                         variant="standard"
                         defaultValue={item.name || ""}
-                        {...register(`itemsList[${index}].name`)} 
+                        {...register(`itemsList[${index}].name`)}
                         onChange={e => handleChange(index, e)}
                     />
+                    <p className="error">{formState.errors.itemsList?.[index].message?.toString()}</p>
                     </Grid>
                     <Grid item xs={1}>
                     <TextField

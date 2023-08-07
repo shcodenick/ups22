@@ -69,6 +69,15 @@ const InvoiceForm = () => {
         }),
     }
 
+    const itemSchema = yup.object().shape({
+        name: yup.string().required(t('required')).min(3, t('tooshort')).max(30, t('toolong')),
+        amount: yup.number().required(t('required')),
+        unit: yup.string().required(t('required')),
+        tax: yup.number().required(t('required')),
+        price: yup.number().required(t('required')),
+      });
+    const ArrayOfItemsSchema = yup.array().of(itemSchema);
+
     const schema = yup.object().shape({
         no: yup.string().required(t('required')).min(1, t('tooshort')).max(2, t('toolong')),
         created: yup.date().required(t('required')),
@@ -82,6 +91,7 @@ const InvoiceForm = () => {
                 return true
             }
         }),
+        // companies' forms
         recipient_company_name: company_validation['company_name'],
         sender_company_name: company_validation['company_name'],
         recipient_city: company_validation['city'],
@@ -98,6 +108,8 @@ const InvoiceForm = () => {
         sender_email: company_validation['email'],
         recipient_bank_account: company_validation['bank_account'],
         sender_bank_account: company_validation['bank_account'],
+        // invoice items fields
+        itemsList: ArrayOfItemsSchema
     });
 
     const methods = useForm({
