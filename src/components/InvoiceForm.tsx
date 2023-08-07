@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext } from 'react'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid } from '@mui/material';
@@ -45,11 +45,11 @@ const InvoiceForm = () => {
             }
         }),
     });
+
     const methods = useForm({
         resolver: yupResolver(schema)
-    }); 
+    });
 
-    const ItemsValues = [{}];
 
     const onSubmit = (data: any) => console.log(data);
 
@@ -67,7 +67,7 @@ const InvoiceForm = () => {
                         inputRef={noInputRef} 
                         {...methods.register("no", { required: true })}
                         />
-                        <p>{methods.formState.errors.no?.message}</p>
+                        <p className="error">{methods.formState.errors.no?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <Controller
@@ -87,7 +87,7 @@ const InvoiceForm = () => {
                                 </LocalizationProvider>
                             )}
                         />
-                        <p>{methods.formState.errors.created?.message}</p>
+                        <p className="error">{methods.formState.errors.created?.message}</p>
                     </Grid>
                     <Grid item xs={6}>
                         <Controller
@@ -107,7 +107,7 @@ const InvoiceForm = () => {
                                 </LocalizationProvider>
                             )}
                         />
-                        <p>{methods.formState.errors.valid?.message}</p>
+                        <p className="error">{methods.formState.errors.valid?.message}</p>
                     </Grid>
                 </Grid>
                 

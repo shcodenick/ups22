@@ -19,3 +19,5 @@ h4 { text-align: center; background-color: #fff; border-radius: 5px; width: 200p
 .App-link {
   color: #294dec;
 }
+
+.error { color: red; }

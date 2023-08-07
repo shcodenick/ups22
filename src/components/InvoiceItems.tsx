@@ -48,7 +48,7 @@ const InvoiceItems = () => {
         <InvoiceItemsBox>
             <h2>{t('items')}</h2>
             {itemsList.map((item, index) => (
-                <Grid container spacing={2}>
+                <Grid key={index} container spacing={2}>
                     <Grid item xs={4}>
                     <TextField
                         label={t('name')}
