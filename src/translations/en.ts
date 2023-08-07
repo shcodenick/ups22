@@ -14,7 +14,7 @@ export const en = {
         company_name: 'Company name',
         city: 'City',
         street: 'Street',
-        postcode: 'Postcode',
+        post_code: 'Postcode',
         vat: 'VAT',
         phone: 'Phone nr',
         email: 'Email address',
@@ -36,6 +36,9 @@ export const en = {
         toolong: 'This is too long.',
         tooshort: 'This is too short.',
         tooearly: 'This is too early.',
+        invalid_format: 'Invalid format.',
+        invalid_post_code: 'Invalid format (XX-XXX).',
+        invalid_vat: 'Invalid format (XXX-XXX-XX-XX).',
         ...shared
     }
 }

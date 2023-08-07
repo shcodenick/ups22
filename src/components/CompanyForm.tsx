@@ -10,21 +10,24 @@ const CompanyFormBox = styled.div`
 
 const CompanyForm = (props:any) => {
     const { t } = useTranslation()
-    const { register } = useFormContext();
-    const fields = ['company_name', 'city', 'street', 'postcode', 'vat', 'phone', 'email', 'bank_account']
+    const { register, formState } = useFormContext();
+    const fields = ['company_name', 'city', 'street', 'post_code', 'vat', 'phone', 'email', 'bank_account']
 
     return (
         <CompanyFormBox>
             <h2>{props.title}</h2>
             {fields.map((item, index) => (
-                <TextField
-                key={index}
-                fullWidth
-                label={t(item)}
-                variant="standard"
-                {...register(props.prefix + item)}
-                name={props.prefix + item}
-                />
+                <div key={index}>
+                    <TextField
+                    key={index}
+                    fullWidth
+                    label={t(item)}
+                    variant="standard"
+                    {...register(props.prefix + item)}
+                    name={props.prefix + item}
+                    />
+                    <p className="error">{formState.errors?.[props.prefix + item]?.message?.toString()}</p>
+                </div>
             ))}
         </CompanyFormBox>
     );

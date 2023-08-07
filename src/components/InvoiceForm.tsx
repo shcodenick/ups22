@@ -31,6 +31,44 @@ const InvoiceForm = () => {
       }, []);
 
 
+    let email_regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+    let bank_account_regex = new RegExp(/^[0-9]{9,18}$/);
+
+    const company_validation = {
+        'company_name': yup.string().required(t('required')).min(3, t('tooshort')).max(20, t('toolong')),
+        'city': yup.string().required(t('required')).min(3, t('tooshort')).max(30, t('toolong')),
+        'street': yup.string().required(t('required')).min(3, t('tooshort')).max(20, t('toolong')),
+        'post_code': yup.string().required(t('required')).test({
+            name: 'is_valid_postcode',
+            message: t('invalid_post_code'),
+            test(value, ctx) {
+                return /^\d{2}-\d{3}$/.test(value)
+            }
+        }),
+        'vat': yup.string().required(t('required')).test({
+            name: 'is_valid_vat',
+            message: t('invalid_vat'),
+            test(value, ctx) {
+                return /^\d{3}-\d{3}-\d{2}-\d{2}$/.test(value)
+            }
+        }),
+        'phone': yup.string().required(t('required')).min(9, t('tooshort')).max(15, t('toolong')),
+        'email': yup.string().required(t('required')).test({
+            name: 'is_valid_email',
+            message: t('invalid_format'),
+            test(value, ctx) {
+                return email_regex.test(value)
+            }
+        }),
+        'bank_account': yup.string().required(t('required')).test({
+            name: 'is_valid_bank_account',
+            message: t('invalid_format'),
+            test(value, ctx) {
+                return bank_account_regex.test(value)
+            }
+        }),
+    }
+
     const schema = yup.object().shape({
         no: yup.string().required(t('required')).min(1, t('tooshort')).max(2, t('toolong')),
         created: yup.date().required(t('required')),
@@ -44,6 +82,22 @@ const InvoiceForm = () => {
                 return true
             }
         }),
+        recipient_company_name: company_validation['company_name'],
+        sender_company_name: company_validation['company_name'],
+        recipient_city: company_validation['city'],
+        sender_city: company_validation['city'],
+        recipient_street: company_validation['street'],
+        sender_street: company_validation['street'],
+        recipient_post_code: company_validation['post_code'],
+        sender_post_code: company_validation['post_code'],
+        recipient_vat: company_validation['vat'],
+        sender_vat: company_validation['vat'],
+        recipient_phone: company_validation['phone'],
+        sender_phone: company_validation['phone'],
+        recipient_email: company_validation['email'],
+        sender_email: company_validation['email'],
+        recipient_bank_account: company_validation['bank_account'],
+        sender_bank_account: company_validation['bank_account'],
     });
 
     const methods = useForm({
