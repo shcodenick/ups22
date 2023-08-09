@@ -4,7 +4,7 @@ import {
     Route,
   } from "react-router-dom";
 import InvoicesList from './InvoicesList';
-import InvoiceForm from './InvoiceForm';
+import InvoiceForm from './InvoiceForm/InvoiceForm';
 import PageNotFound from './PageNotFound';
   
 const Content = () => {

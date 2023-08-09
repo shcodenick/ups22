@@ -32,7 +32,7 @@ const InvoiceItems = () => {
             <h2>{t('items')}</h2>
             {fields.map((item, index) => (
                 <Grid key={item.id} container spacing={2}>
-                    <Grid item xs={3}>
+                    <Grid item xs={2}>
                         <TextField
                             label={t('name')}
                             fullWidth

@@ -26,7 +26,7 @@ const CompanyForm = (props:any) => {
                     {...register(props.prefix + item)}
                     name={props.prefix + item}
                     />
-                    <p className="error">{formState.errors?.[props.prefix + item]?.message?.toString()}</p>
+                    <p className="error">{t(formState.errors?.[props.prefix + item]?.message?.toString() || "")}</p>
                 </div>
             ))}
         </CompanyFormBox>
