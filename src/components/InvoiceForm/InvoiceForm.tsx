@@ -31,7 +31,8 @@ const InvoiceForm = () => {
       }, []);
 
     const methods = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues: {items:[{}]}
     });
 
 
