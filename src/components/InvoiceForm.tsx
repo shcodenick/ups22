@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { useTranslation } from 'react-i18next';
 import { TextField, Button, Grid } from '@mui/material';
@@ -33,6 +33,7 @@ const InvoiceForm = () => {
 
     let email_regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
     let bank_account_regex = new RegExp(/^[0-9]{9,18}$/);
+    let amount_regex = new RegExp(/^[0-9]{1,10}\.[0-9]{2}$/);
 
     const company_validation = {
         'company_name': yup.string().required(t('required')).min(3, t('tooshort')).max(20, t('toolong')),
@@ -68,13 +69,25 @@ const InvoiceForm = () => {
             }
         }),
     }
-
+    
     const itemSchema = yup.object().shape({
-        name: yup.string().required(t('required')).min(3, t('tooshort')).max(30, t('toolong')),
-        amount: yup.number().required(t('required')),
-        unit: yup.string().required(t('required')),
-        tax: yup.number().required(t('required')),
-        price: yup.number().required(t('required')),
+        name: yup.string().required('required').min(3, 'tooshort').max(30, 'toolong'),
+        amount: yup.string().required('required').test({
+            name: 'is_valid_amount',
+            message: 'invalid_amount',
+            test(value, ctx) {
+                return amount_regex.test(value)
+            }
+        }),
+        unit: yup.string().required('required').min(1, 'tooshort').max(10, 'toolong'),
+        tax: yup.string().required('required').oneOf(['0%', '8%', '12%', '19%', '21%'], 'invalid_tax'),
+        price: yup.string().required('required').test({
+            name: 'is_valid_price',
+            message: 'invalid_amount',
+            test(value, ctx) {
+                return amount_regex.test(value)
+            }
+        }),
       });
     const ArrayOfItemsSchema = yup.array().of(itemSchema);
 
@@ -109,7 +122,7 @@ const InvoiceForm = () => {
         recipient_bank_account: company_validation['bank_account'],
         sender_bank_account: company_validation['bank_account'],
         // invoice items fields
-        itemsList: ArrayOfItemsSchema
+        items: ArrayOfItemsSchema
     });
 
     const methods = useForm({

@@ -39,6 +39,8 @@ export const pl = {
         invalid_format: 'Niepoprawny format.',
         invalid_postcode: 'Niepoprawny format (XX-XXX).',
         invalid_vat: 'Niepoprawny format (XXX-XXX-XX-XX).',
+        invalid_amount: 'Niepoprawny format (XXXX.XX)',
+        invalid_tax: 'Dostępne opcje: 0%, 8%, 12%, 19%, 21%',
         ...shared
     }
 }
