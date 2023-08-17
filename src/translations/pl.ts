@@ -2,6 +2,8 @@ import { shared } from './shared'
 
 export const pl = {
     translation: {
+        loading: "ŁADUJĘ",
+        loading_error: "BŁĄÐ PODCZAS ŁADOWANIA",
         back: "Powrót",
         oink: "CHRUM!",
         welcome: 'Witaj w appce INVO!',
@@ -9,6 +11,7 @@ export const pl = {
         invoice: 'Faktura',
         home: 'Strona główna',
         newinvoice: 'Nowa faktura',
+        edit_invoice: 'Edycja faktury',
         recipient: 'Odbiorca',
         sender: 'Nadawca',
         company_name: 'Nazwa firmy',
@@ -41,6 +44,7 @@ export const pl = {
         invalid_vat: 'Niepoprawny format (XXX-XXX-XX-XX).',
         invalid_amount: 'Niepoprawny format (XXXX.XX)',
         invalid_tax: 'Dostępne opcje: 0%, 8%, 12%, 19%, 21%',
+        invoice_added: 'Faktura dodana.',
         ...shared
     }
 }

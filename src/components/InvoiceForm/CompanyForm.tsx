@@ -23,6 +23,7 @@ const CompanyForm = (props:any) => {
                     fullWidth
                     label={t(item)}
                     variant="standard"
+                    InputLabelProps={{ shrink: true }}
                     {...register(props.prefix + item)}
                     name={props.prefix + item}
                     />

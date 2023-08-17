@@ -4,7 +4,8 @@ import {
     Route,
   } from "react-router-dom";
 import InvoicesList from './InvoicesList';
-import InvoiceForm from './InvoiceForm/InvoiceForm';
+import AddInvoice from './InvoiceForm/AddInvoice';
+import EditInvoice from './InvoiceForm/EditInvoice';
 import PageNotFound from './PageNotFound';
   
 const Content = () => {
@@ -15,7 +16,8 @@ const Content = () => {
 
   const componentMap: ComponentMap = {
       'InvoicesList': InvoicesList,
-      'InvoiceForm': InvoiceForm,
+      'AddInvoice': AddInvoice,
+      'EditInvoice': EditInvoice,
       'PageNotFound': PageNotFound,
   }
 
@@ -30,7 +32,8 @@ const Content = () => {
 
   const routing_map = {
     '/': 'InvoicesList',
-    '/invoice': 'InvoiceForm',
+    '/invoice': 'AddInvoice',
+    '/invoice/:id': 'EditInvoice',
     '*': 'PageNotFound',
   };
 

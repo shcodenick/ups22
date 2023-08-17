@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from 'react';
+import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
 import { TextField, Grid } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,11 +8,13 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from 'react-hook-form';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import type { SubmitHandler } from "react-hook-form"
 
 import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
 import InvoiceItems from './InvoiceItems';
 import schema from './validation';
+import { InvoiceFormType } from './defaultValues';
 
 
 const InvoicesFormBox = styled.div`
@@ -20,29 +22,32 @@ const InvoicesFormBox = styled.div`
     width: 800px;
 `;
 
-const InvoiceForm = () => {
-    const { t } = useTranslation()
+
+type InvoiceFormProps = {
+    initialValues: InvoiceFormType; 
+    onSubmit: SubmitHandler<any>; 
+};
+
+
+const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
+    const { t } = useTranslation();
 
     const noInputRef = React.useRef<HTMLInputElement>(null);
     React.useEffect(()=>{
         if (noInputRef.current) {
             noInputRef.current.focus();
           }
-      }, []);
+    }, []);
 
     const methods = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {items:[{}]}
+        defaultValues: initialValues,
     });
-
-
-    const onSubmit = (data: any) => console.log(data);
 
     return (
         <InvoicesFormBox>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
                     <Grid item xs={8}>
                         <TextField
@@ -50,6 +55,7 @@ const InvoiceForm = () => {
                         label={t('no')}
                         variant="standard"
                         inputRef={noInputRef} 
+                        InputLabelProps={{ shrink: true }}
                         {...methods.register("no", { required: true })}
                         />
                         <p className="error">{t(methods.formState.errors.no?.message || "")}</p>
