@@ -9,6 +9,7 @@ import { Controller } from 'react-hook-form';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import type { SubmitHandler } from "react-hook-form"
+import dayjs from 'dayjs';
 
 import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
@@ -74,6 +75,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                                     label={t('created')} 
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
+                                    value={dayjs(value)}
                                 />
                                 </LocalizationProvider>
                             )}
@@ -94,6 +96,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                                     label={t('valid')}
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
+                                    value={dayjs(value)}
                                 />
                                 </LocalizationProvider>
                             )}
