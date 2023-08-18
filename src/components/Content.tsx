@@ -6,6 +6,7 @@ import {
 import InvoicesList from './InvoicesList';
 import AddInvoice from './InvoiceForm/AddInvoice';
 import EditInvoice from './InvoiceForm/EditInvoice';
+import ShowInvoice from './ShowInvoice';
 import PageNotFound from './PageNotFound';
   
 const Content = () => {
@@ -18,6 +19,7 @@ const Content = () => {
       'InvoicesList': InvoicesList,
       'AddInvoice': AddInvoice,
       'EditInvoice': EditInvoice,
+      'ShowInvoice': ShowInvoice,
       'PageNotFound': PageNotFound,
   }
 
@@ -34,6 +36,7 @@ const Content = () => {
     '/': 'InvoicesList',
     '/invoice': 'AddInvoice',
     '/invoice/:id': 'EditInvoice',
+    '/invoice/:id/preview': 'ShowInvoice',
     '*': 'PageNotFound',
   };
 

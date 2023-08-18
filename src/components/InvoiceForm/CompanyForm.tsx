@@ -26,6 +26,7 @@ const CompanyForm = (props:any) => {
                     InputLabelProps={{ shrink: true }}
                     {...register(props.prefix + item)}
                     name={props.prefix + item}
+                    disabled={props.disabled}
                     />
                     <p className="error">{t(formState.errors?.[props.prefix + item]?.message?.toString() || "")}</p>
                 </div>

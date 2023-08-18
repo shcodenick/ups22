@@ -70,7 +70,11 @@ const InvoicesList = () => {
                 <TableBody>
                 {data!.map((item: any, index: number) => (
                     <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                        <TableCell>{item.id }</TableCell>
+                        <TableCell>
+                            <Link to={`http://localhost:3000/invoice/${item.id}/preview`}>
+                                {item.id }
+                            </Link>
+                        </TableCell>
                         <TableCell>{item.no }</TableCell>
                         <TableCell>{format_date(item.created) }</TableCell>
                         <TableCell>{format_date(item.valid) }</TableCell>

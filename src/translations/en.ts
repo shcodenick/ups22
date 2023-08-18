@@ -45,6 +45,7 @@ export const en = {
         invalid_amount: 'Invalid format (XXXX.XX)',
         invalid_tax: 'Available options: 0%, 8%, 12%, 19%, 21%',
         invoice_added: 'Invoice added.',
+        invoice_details: 'Invoice details',
         ...shared
     }
 }

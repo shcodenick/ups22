@@ -27,10 +27,12 @@ const InvoicesFormBox = styled.div`
 type InvoiceFormProps = {
     initialValues: InvoiceFormType; 
     onSubmit: SubmitHandler<any>; 
-};
+} & Partial<{
+    disabled: boolean;
+}>;
 
 
-const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
+const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit, disabled}) => {
     const { t } = useTranslation();
 
     const noInputRef = React.useRef<HTMLInputElement>(null);
@@ -58,6 +60,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                         inputRef={noInputRef} 
                         InputLabelProps={{ shrink: true }}
                         {...methods.register("no", { required: true })}
+                        disabled={disabled}
                         />
                         <p className="error">{t(methods.formState.errors.no?.message || "")}</p>
                     </Grid>
@@ -76,6 +79,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
                                     value={dayjs(value)}
+                                    disabled={disabled}
                                 />
                                 </LocalizationProvider>
                             )}
@@ -97,6 +101,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
                                     value={dayjs(value)}
+                                    disabled={disabled}
                                 />
                                 </LocalizationProvider>
                             )}
@@ -107,16 +112,16 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit}) => {
                 
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CompanyForm title={t('recipient')} prefix="recipient_" />
+                        <CompanyForm title={t('recipient')} prefix="recipient_" disabled={disabled} />
                     </Grid>
                     <Grid item xs={6}>
-                        <CompanyForm title={t('sender')} prefix="sender_" />
+                        <CompanyForm title={t('sender')} prefix="sender_" disabled={disabled} />
                     </Grid>
                 </Grid>
 
-                <InvoiceItems />
+                <InvoiceItems disabled={disabled!} />
                 
-                <FormActions />
+                {!disabled && <FormActions />}
             </form>
             </FormProvider>
         </InvoicesFormBox>
