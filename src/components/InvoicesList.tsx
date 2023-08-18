@@ -10,11 +10,10 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import dayjs from 'dayjs';
 
 import useGetInvoices from './useGetInvoices';
+import DeleteButton from './DeleteButton';
 import Loading from './Loading';
 import LoadingError from './LoadingError';
 import { InvoiceFormType } from './InvoiceForm/defaultValues';
@@ -82,9 +81,7 @@ const InvoicesList = () => {
                                     <EditIcon />
                                 </IconButton>
                             </Link>
-                            <IconButton aria-label="delete">
-                                <DeleteIcon />
-                            </IconButton>
+                            <DeleteButton id={item.id} />
                         </TableCell>
                     </TableRow>
                 ))}
