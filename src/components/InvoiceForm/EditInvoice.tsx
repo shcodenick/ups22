@@ -10,6 +10,8 @@ import LoadingError from '../LoadingError';
 import InvoiceForm from "./InvoiceForm";
 import { useGetInvoice, GetInvoiceQueryParams } from "../useGetInvoice";
 
+import { InvoiceFormType } from './defaultValues';
+
 
 const EditInvoiceBox = styled.div`
     margin: 20px auto;
@@ -24,12 +26,12 @@ const EditInvoice = () => {
     const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as GetInvoiceQueryParams);
 
     const mutation = useMutation({
-        mutationFn: (invoice) => {
+        mutationFn: (invoice: InvoiceFormType) => {
           return axios.put(`http://localhost:3001/invoices/${id}`, invoice)
         },
       })
 
-    const onSubmit = (data: any) => { 
+    const onSubmit = (data: InvoiceFormType) => { 
         mutation.mutate(data); 
         alert(t('changes_saved'));
     }
