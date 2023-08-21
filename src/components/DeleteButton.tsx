@@ -5,7 +5,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 export interface DeleteButtonProps {
-    id: number 
+    id: number | undefined
 }
 
 const DeleteButton = (props:DeleteButtonProps) => {

@@ -17,6 +17,8 @@ import DeleteButton from './DeleteButton';
 import Loading from './Loading';
 import LoadingError from './LoadingError';
 import { InvoiceFormType } from './InvoiceForm/defaultValues';
+import Pig from './Pig';
+
 
 const InvocesListBox = styled.div`
     margin: 20px auto;
@@ -49,6 +51,10 @@ const InvoicesList = () => {
         return new Date(date_str).toISOString().slice(0, 10);
     }
 
+    if (!data) {
+        return <Pig />
+    }
+
     return (
         
         <InvocesListBox>
@@ -68,7 +74,7 @@ const InvoicesList = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {data!.map((item: any, index: number) => (
+                {data.map((item: InvoiceFormType, index: number) => (
                     <TableRow key={index} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                         <TableCell>
                             <Link to={`http://localhost:3000/invoice/${item.id}/preview`}>

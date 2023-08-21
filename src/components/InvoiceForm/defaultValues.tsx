@@ -1,7 +1,8 @@
 export type InvoiceFormType = {
+    id: number | undefined,
     no: string,
-    created: Date,
-    valid: Date,
+    created: string,
+    valid: string,
     sender_company_name: string,
     sender_street: string,
     sender_post_code: string,
@@ -25,9 +26,10 @@ export type InvoiceFormType = {
 export type InvoicesListType = InvoiceFormType[];
 
 const defaultValues:InvoiceFormType = {
+    id: 0,
     no: '',
-    created: new Date(),
-    valid: new Date(),
+    created: '',
+    valid: '',
     sender_company_name: '',
     sender_street: '',
     sender_post_code: '',

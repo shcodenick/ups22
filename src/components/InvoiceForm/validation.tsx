@@ -64,17 +64,8 @@ const ArrayOfItemsSchema = yup.array().of(itemSchema);
 
 const schema = yup.object().shape({
     no: yup.string().required('required').min(1, 'tooshort').max(2, 'toolong'),
-    created: yup.date().required('required'),
-    valid: yup.date().required('required').test({
-        name: 'valid_gt_created',
-        message: 'tooearly',
-        test(value, ctx) {
-            if (value < this.parent.created) {
-                return false
-            }
-            return true
-        }
-    }),
+    created: yup.string().required('required'),
+    valid: yup.string().required('required'),
     // companies' forms
     recipient_company_name: company_validation['company_name'],
     sender_company_name: company_validation['company_name'],
