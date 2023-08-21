@@ -32,7 +32,7 @@ const ShowInvoice = () => {
     return (
         <ShowInvoiceBox>
             <h2>{t('invoice_details')} #{id}</h2>
-            <InvoiceForm initialValues={invoice!} onSubmit={() => {return false;}} disabled={true} />
+            {invoice && <InvoiceForm initialValues={invoice} onSubmit={() => {return false;}} disabled={true} />}
         </ShowInvoiceBox>
     )
 };
