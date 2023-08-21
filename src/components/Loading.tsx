@@ -13,7 +13,7 @@ const LoadingBox = styled.div`
     opacity: 0.5;
     padding-top: 100px;
     text-align: center;
-    p { font-size: 100px; }
+    font-size: 100px;
 `;
 
 const Loading = () => {
@@ -21,9 +21,7 @@ const Loading = () => {
 
     return (
         <LoadingBox>
-            <p>
-                {t('loading')} 
-            </p>
+            {t('loading')} 
         </LoadingBox>
     );
 };
