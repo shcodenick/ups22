@@ -47,7 +47,7 @@ const EditInvoice = () => {
     return (
         <EditInvoiceBox>
             <h2>{t('edit_invoice')} {id}</h2>
-            <InvoiceForm initialValues={invoice!} onSubmit={onSubmit} />
+            {invoice && <InvoiceForm initialValues={invoice} onSubmit={onSubmit} />}
         </EditInvoiceBox>
     )
 };
