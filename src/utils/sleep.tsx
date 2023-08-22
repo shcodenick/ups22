@@ -9,3 +9,6 @@ function sleep(milliseconds:number) {
 
 
 export default sleep;
+
+
+export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
