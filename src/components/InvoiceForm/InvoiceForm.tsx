@@ -35,6 +35,9 @@ type InvoiceFormProps = {
 const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit, disabled}) => {
     const { t } = useTranslation();
 
+    if (!disabled) {
+        disabled = false;
+    }
     const noInputRef = React.useRef<HTMLInputElement>(null);
     React.useEffect(()=>{
         if (noInputRef.current) {
@@ -119,7 +122,7 @@ const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit, disab
                     </Grid>
                 </Grid>
 
-                <InvoiceItems disabled={disabled!} />
+                <InvoiceItems disabled={disabled} />
                 
                 {!disabled && <FormActions />}
             </form>
