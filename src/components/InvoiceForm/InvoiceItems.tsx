@@ -33,16 +33,6 @@ const InvoiceItems: React.FC<InvoiceItemsProps> = ({ disabled }) => {
         name: "items",
     });
 
-    let button;
-    if (!disabled) {
-        button = 
-        <Button onClick={() => append({})} variant="contained" color="primary" sx={{marginTop: '20px'}}>
-            {t('add_item')}
-        </Button>;
-    } else {
-        button = '';
-    }
-
     return (
         <InvoiceItemsBox>
             <h2>{t('items')}</h2>
@@ -111,7 +101,7 @@ const InvoiceItems: React.FC<InvoiceItemsProps> = ({ disabled }) => {
                 </Grid>
             ))}
 
-            {button}
+            {!disabled &&  <Button onClick={() => append({})} variant="contained" color="primary" sx={{marginTop: '20px'}}>{t('add_item')}</Button>}
 
         </InvoiceItemsBox>
     );
