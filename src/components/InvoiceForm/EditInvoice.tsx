@@ -21,7 +21,8 @@ const EditInvoiceBox = styled.div`
 
 const EditInvoice = () => {
     const { t } = useTranslation();
-    const { id } : any = useParams();
+    const params = useParams();
+    const id = params.id;
 
     const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as GetInvoiceQueryParams);
 

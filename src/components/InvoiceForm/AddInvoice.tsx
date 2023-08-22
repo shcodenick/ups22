@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation } from 'react-query';
-import defaultValues from './defaultValues';
+import defaultValues, { InvoiceFormType } from './defaultValues';
 import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
@@ -17,12 +17,12 @@ const AddInvoice = () => {
     const { t } = useTranslation();
 
     const mutation = useMutation({
-        mutationFn: (newInvoice) => {
+        mutationFn: (newInvoice: InvoiceFormType) => {
           return axios.post('http://localhost:3001/invoices', newInvoice)
         },
       })
 
-    const onSubmit = (data: any) => { 
+    const onSubmit = (data: InvoiceFormType) => { 
         mutation.mutate(data); 
         alert(t('invoice_added'));
     }

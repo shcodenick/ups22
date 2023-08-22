@@ -17,7 +17,8 @@ const ShowInvoiceBox = styled.div`
 
 const ShowInvoice = () => {
     const { t } = useTranslation();
-    const { id } : any = useParams();
+    const params = useParams();
+    const id = params.id;
 
     const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as GetInvoiceQueryParams);
 

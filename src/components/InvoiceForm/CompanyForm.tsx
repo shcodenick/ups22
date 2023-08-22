@@ -8,7 +8,13 @@ const CompanyFormBox = styled.div`
     background-color: #fff; padding: 5px;
 `;
 
-const CompanyForm = (props:any) => {
+type CompanyFormProps = {
+    title: string;
+    prefix: string; 
+    disabled: boolean; 
+} 
+
+const CompanyForm = (props: CompanyFormProps) => {
     const { t } = useTranslation()
     const { register, formState } = useFormContext();
     const fields = ['company_name', 'city', 'street', 'post_code', 'vat', 'phone', 'email', 'bank_account']
