@@ -40,9 +40,11 @@ const InvoicesList = () => {
 
     function sum_amounts(invoice:InvoiceFormType) {
         let totalAmount = 0;
-        for (const item of invoice.items) {
-            const amount = parseFloat(item.amount);
-            totalAmount += amount;
+        if (invoice.items) {
+            for (const item of invoice.items) {
+                const amount = parseFloat(item.amount);
+                totalAmount += amount;
+            }
         }
         return totalAmount;
     }

@@ -26,7 +26,7 @@ const InvoicesFormBox = styled.div`
 
 type InvoiceFormPropsType = {
     initialValues: InvoiceFormType; 
-    onSubmit: SubmitHandler<any>;
+    onSubmit: SubmitHandler<InvoiceFormType>;
     disabled: boolean;
 };
 

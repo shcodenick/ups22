@@ -1,5 +1,5 @@
 export type InvoiceFormType = {
-    id: number | undefined,
+    id?: number | undefined,
     no: string,
     created: string,
     valid: string,
@@ -19,7 +19,7 @@ export type InvoiceFormType = {
     recipient_phone: string,
     recipient_email: string,
     recipient_bank_account: string,
-    items: {name: string, amount: string, unit: string, tax: string, price: string}[]
+    items: {name: string, amount: string, unit: string, tax: string, price: string}[] | undefined
 }
 
 
