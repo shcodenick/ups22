@@ -8,7 +8,7 @@ import { useMutation } from 'react-query';
 import Loading from '../Loading';
 import LoadingError from '../LoadingError';
 import InvoiceForm from "./InvoiceForm";
-import { useGetInvoice, GetInvoiceQueryParams } from "../useGetInvoice";
+import { useGetInvoice, InvoiceQueryParamsType } from "../useGetInvoice";
 
 import { InvoiceFormType } from './defaultValues';
 
@@ -24,7 +24,7 @@ const EditInvoice = () => {
     const params = useParams();
     const id = params.id;
 
-    const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as GetInvoiceQueryParams);
+    const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as InvoiceQueryParamsType);
 
     const mutation = useMutation({
         mutationFn: (invoice: InvoiceFormType) => {

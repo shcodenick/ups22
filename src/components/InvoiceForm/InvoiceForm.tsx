@@ -24,14 +24,14 @@ const InvoicesFormBox = styled.div`
 `;
 
 
-type InvoiceFormProps = {
+type InvoiceFormPropsType = {
     initialValues: InvoiceFormType; 
     onSubmit: SubmitHandler<any>;
     disabled: boolean;
 };
 
 
-const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit, disabled}) => {
+const InvoiceForm: React.FC<InvoiceFormPropsType> = ({initialValues, onSubmit, disabled}) => {
     const { t } = useTranslation();
 
     if (!disabled) {

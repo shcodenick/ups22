@@ -11,12 +11,12 @@ const InvoiceItemsBox = styled.div`
 `;
 
 
-type InvoiceItemsProps = {
+type InvoiceItemsPropsType = {
     disabled: boolean; 
 };
 
 
-const InvoiceItems: React.FC<InvoiceItemsProps> = ({ disabled }) => {
+const InvoiceItems: React.FC<InvoiceItemsPropsType> = ({ disabled }) => {
     const { t } = useTranslation();
     
     type ItemFormType = { items: {

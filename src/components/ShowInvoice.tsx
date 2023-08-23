@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom';
 import Loading from './Loading';
 import LoadingError from './LoadingError';
 import InvoiceForm from './InvoiceForm/InvoiceForm';
-import { useGetInvoice, GetInvoiceQueryParams } from "./useGetInvoice";
+import { useGetInvoice, InvoiceQueryParamsType } from "./useGetInvoice";
 
 
 const ShowInvoiceBox = styled.div`
@@ -20,7 +20,7 @@ const ShowInvoice = () => {
     const params = useParams();
     const id = params.id;
 
-    const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as GetInvoiceQueryParams);
+    const { data: invoice, isLoading: isLoading, isError: isError } = useGetInvoice({ id } as InvoiceQueryParamsType);
 
     if (isLoading) {
         return <Loading />;

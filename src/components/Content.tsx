@@ -10,10 +10,10 @@ import ShowInvoice from './ShowInvoice';
 import PageNotFound from './PageNotFound';
   
 const Content = () => {
-  type routeKey = keyof typeof componentMap;
-  type routingMapType = {
+  type RouteKeyType = keyof typeof componentMap;
+  type RoutingMapType = {
     route: string,
-    componentName: routeKey
+    componentName: RouteKeyType
   }
 
   const componentMap = {
@@ -24,7 +24,7 @@ const Content = () => {
       PageNotFound: PageNotFound,
   }
 
-  function getComponentByName(name: routeKey) {
+  function getComponentByName(name: RouteKeyType) {
     const Component = componentMap[name];
     if (Component) {
       return <Component />;
@@ -33,7 +33,7 @@ const Content = () => {
     }
   }
 
-  const routing_map: routingMapType[] = [
+  const routing_map: RoutingMapType[] = [
     {route: '/', componentName: 'InvoicesList'},
     {route: '/invoice', componentName: 'AddInvoice'},
     {route: '/invoice/:id', componentName: 'EditInvoice'},
