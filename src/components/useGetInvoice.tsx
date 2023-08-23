@@ -3,12 +3,12 @@ import axios from 'axios';
 
 import { InvoiceFormType } from './InvoiceForm/defaultValues';
 
+import { QUERY_KEYS } from '../constants';
+
 
 export type GetInvoiceQueryParams = {
   id: string;
 }
-
-const QUERY_KEY = ['Invoice'];
 
 const fetchInvoice = async (params: GetInvoiceQueryParams): Promise<InvoiceFormType> => {
   const { data } = await axios.get(`http://localhost:3001/invoices/${params.id}`);
@@ -16,5 +16,5 @@ const fetchInvoice = async (params: GetInvoiceQueryParams): Promise<InvoiceFormT
 };
 
 export const useGetInvoice = (params: GetInvoiceQueryParams) => {
-  return useQuery<InvoiceFormType, Error>(QUERY_KEY, () => fetchInvoice(params));
+  return useQuery<InvoiceFormType, Error>(QUERY_KEYS.INVOICE, () => fetchInvoice(params));
 };

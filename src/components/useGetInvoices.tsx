@@ -2,9 +2,8 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 import { InvoicesListType } from './InvoiceForm/defaultValues';
+import { QUERY_KEYS } from '../constants';
 
-
-const QUERY_KEY = ['Invoices'];
 
 const fetchInvoices = async (): Promise<InvoicesListType> => {
   const { data } = await axios.get('http://localhost:3001/invoices');
@@ -12,7 +11,7 @@ const fetchInvoices = async (): Promise<InvoicesListType> => {
 };
 
 const useGetInvoices = () => {
-  return useQuery<InvoicesListType, Error>(QUERY_KEY, () => fetchInvoices());
+  return useQuery<InvoicesListType, Error>(QUERY_KEYS.INVOICES, () => fetchInvoices());
 };
 
 export default useGetInvoices;

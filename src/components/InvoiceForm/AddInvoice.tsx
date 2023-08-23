@@ -30,7 +30,7 @@ const AddInvoice = () => {
     return (
         <AddInvoiceBox>
             <h2>{t('newinvoice')}</h2>
-            <InvoiceForm  initialValues={defaultValues} onSubmit={onSubmit}/>
+            <InvoiceForm initialValues={defaultValues} onSubmit={onSubmit} disabled={false}/>
         </AddInvoiceBox>
     )
 };

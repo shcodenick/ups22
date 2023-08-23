@@ -26,10 +26,9 @@ const InvoicesFormBox = styled.div`
 
 type InvoiceFormProps = {
     initialValues: InvoiceFormType; 
-    onSubmit: SubmitHandler<any>; 
-} & Partial<{
+    onSubmit: SubmitHandler<any>;
     disabled: boolean;
-}>;
+};
 
 
 const InvoiceForm: React.FC<InvoiceFormProps> = ({initialValues, onSubmit, disabled}) => {
