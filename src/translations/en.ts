@@ -2,6 +2,8 @@ import { shared } from './shared'
 
 export const en = {
     translation: {
+        loading: "LOADING",
+        loading_error: "LOADING ERROR",
         back: "Back",
         oink: "OINK!",
         welcome: 'Welcome to INVO app!',
@@ -9,6 +11,7 @@ export const en = {
         invoice: 'Invoice',
         home: 'Home',
         newinvoice: 'New invoice',
+        edit_invoice: 'Edit invoice',
         recipient: 'Recipient',
         sender: 'Sender',
         company_name: 'Company name',
@@ -41,6 +44,8 @@ export const en = {
         invalid_vat: 'Invalid format (XXX-XXX-XX-XX).',
         invalid_amount: 'Invalid format (XXXX.XX)',
         invalid_tax: 'Available options: 0%, 8%, 12%, 19%, 21%',
+        invoice_added: 'Invoice added.',
+        invoice_details: 'Invoice details',
         ...shared
     }
 }

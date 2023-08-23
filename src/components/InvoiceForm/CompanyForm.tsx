@@ -8,7 +8,13 @@ const CompanyFormBox = styled.div`
     background-color: #fff; padding: 5px;
 `;
 
-const CompanyForm = (props:any) => {
+type CompanyFormProps = {
+    title: string;
+    prefix: string; 
+    disabled: boolean; 
+} 
+
+const CompanyForm = (props: CompanyFormProps) => {
     const { t } = useTranslation()
     const { register, formState } = useFormContext();
     const fields = ['company_name', 'city', 'street', 'post_code', 'vat', 'phone', 'email', 'bank_account']
@@ -23,8 +29,10 @@ const CompanyForm = (props:any) => {
                     fullWidth
                     label={t(item)}
                     variant="standard"
+                    InputLabelProps={{ shrink: true }}
                     {...register(props.prefix + item)}
                     name={props.prefix + item}
+                    disabled={props.disabled}
                     />
                     <p className="error">{t(formState.errors?.[props.prefix + item]?.message?.toString() || "")}</p>
                 </div>

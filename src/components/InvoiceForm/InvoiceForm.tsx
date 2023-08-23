@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from '@emotion/styled'
+import React from 'react';
+import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
 import { TextField, Grid } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -8,11 +8,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from 'react-hook-form';
 import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import type { SubmitHandler } from "react-hook-form"
+import dayjs from 'dayjs';
 
 import FormActions from './FormActions';
 import CompanyForm from './CompanyForm';
 import InvoiceItems from './InvoiceItems';
 import schema from './validation';
+import { InvoiceFormType } from './defaultValues';
 
 
 const InvoicesFormBox = styled.div`
@@ -20,29 +23,36 @@ const InvoicesFormBox = styled.div`
     width: 800px;
 `;
 
-const InvoiceForm = () => {
-    const { t } = useTranslation()
 
+type InvoiceFormPropsType = {
+    initialValues: InvoiceFormType; 
+    onSubmit: SubmitHandler<InvoiceFormType>;
+    disabled: boolean;
+};
+
+
+const InvoiceForm: React.FC<InvoiceFormPropsType> = ({initialValues, onSubmit, disabled}) => {
+    const { t } = useTranslation();
+
+    if (!disabled) {
+        disabled = false;
+    }
     const noInputRef = React.useRef<HTMLInputElement>(null);
     React.useEffect(()=>{
         if (noInputRef.current) {
             noInputRef.current.focus();
           }
-      }, []);
+    }, []);
 
     const methods = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {items:[{}]}
+        defaultValues: initialValues,
     });
-
-
-    const onSubmit = (data: any) => console.log(data);
 
     return (
         <InvoicesFormBox>
             <FormProvider {...methods}>
             <form onSubmit={methods.handleSubmit(onSubmit)}>
-                <h2>{t('newinvoice')}</h2>
                 <Grid item container spacing={1} xs={6}>
                     <Grid item xs={8}>
                         <TextField
@@ -50,7 +60,9 @@ const InvoiceForm = () => {
                         label={t('no')}
                         variant="standard"
                         inputRef={noInputRef} 
+                        InputLabelProps={{ shrink: true }}
                         {...methods.register("no", { required: true })}
+                        disabled={disabled}
                         />
                         <p className="error">{t(methods.formState.errors.no?.message || "")}</p>
                     </Grid>
@@ -68,6 +80,8 @@ const InvoiceForm = () => {
                                     label={t('created')} 
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
+                                    value={dayjs(value)}
+                                    disabled={disabled}
                                 />
                                 </LocalizationProvider>
                             )}
@@ -88,6 +102,8 @@ const InvoiceForm = () => {
                                     label={t('valid')}
                                     onChange={onChange} // send value to hook form
                                     inputRef={ref}
+                                    value={dayjs(value)}
+                                    disabled={disabled}
                                 />
                                 </LocalizationProvider>
                             )}
@@ -98,16 +114,16 @@ const InvoiceForm = () => {
                 
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
-                        <CompanyForm title={t('recipient')} prefix="recipient_" />
+                        <CompanyForm title={t('recipient')} prefix="recipient_" disabled={disabled} />
                     </Grid>
                     <Grid item xs={6}>
-                        <CompanyForm title={t('sender')} prefix="sender_" />
+                        <CompanyForm title={t('sender')} prefix="sender_" disabled={disabled} />
                     </Grid>
                 </Grid>
 
-                <InvoiceItems />
+                <InvoiceItems disabled={disabled} />
                 
-                <FormActions />
+                {!disabled && <FormActions />}
             </form>
             </FormProvider>
         </InvoicesFormBox>

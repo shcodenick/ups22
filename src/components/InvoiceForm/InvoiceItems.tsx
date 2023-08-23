@@ -10,7 +10,13 @@ const InvoiceItemsBox = styled.div`
     
 `;
 
-const InvoiceItems = () => {
+
+type InvoiceItemsPropsType = {
+    disabled: boolean; 
+};
+
+
+const InvoiceItems: React.FC<InvoiceItemsPropsType> = ({ disabled }) => {
     const { t } = useTranslation();
     
     type ItemFormType = { items: {
@@ -38,6 +44,7 @@ const InvoiceItems = () => {
                             fullWidth
                             variant="standard"
                             {...register(`items.${index}.name`)}
+                            disabled={disabled}
                         />
                         <p className="error">{t(formState.errors.items?.[index]?.name?.message || "")}</p>
                     </Grid>
@@ -47,6 +54,7 @@ const InvoiceItems = () => {
                             fullWidth
                             variant="standard"
                             {...register(`items.${index}.amount`)} 
+                            disabled={disabled}
                         />
                         <p className="error">{t(formState.errors.items?.[index]?.amount?.message || "")}</p>
                     </Grid>
@@ -56,6 +64,7 @@ const InvoiceItems = () => {
                             fullWidth
                             variant="standard"
                             {...register(`items.${index}.unit`)} 
+                            disabled={disabled}
                         />
                         <p className="error">{t(formState.errors.items?.[index]?.unit?.message || "")}</p>
                     </Grid>
@@ -65,6 +74,7 @@ const InvoiceItems = () => {
                             fullWidth
                             variant="standard"
                             {...register(`items.${index}.tax`)} 
+                            disabled={disabled}
                         />
                         <p className="error">{t(formState.errors.items?.[index]?.tax?.message || "")}</p>
                     </Grid>
@@ -74,13 +84,14 @@ const InvoiceItems = () => {
                             fullWidth
                             variant="standard"
                             {...register(`items.${index}.price`)} 
+                            disabled={disabled}
                         />
                         <p className="error">{t(formState.errors.items?.[index]?.price?.message || "")}</p>
                     </Grid>
                     
                     <Grid item xs={2}>
                     {
-                        index ? 
+                        index && !disabled ? 
                         <IconButton onClick={() => remove(index)} aria-label="delete" sx={{marginTop: '10px'}}>
                             <DeleteIcon />
                         </IconButton>
@@ -90,9 +101,8 @@ const InvoiceItems = () => {
                 </Grid>
             ))}
 
-            <Button onClick={() => append({})} variant="contained" color="primary" sx={{marginTop: '20px'}}>
-                {t('add_item')}
-            </Button>
+            {!disabled &&  <Button onClick={() => append({})} variant="contained" color="primary" sx={{marginTop: '20px'}}>{t('add_item')}</Button>}
+
         </InvoiceItemsBox>
     );
 };
